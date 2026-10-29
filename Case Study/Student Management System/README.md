@@ -1,5 +1,5 @@
 
-# Student Management System — Database Case Study
+# Student Management System 
 
 A real-world database case study designed to demonstrate SQL problem-solving, relational database design, data integrity, academic reporting, transaction management, and database security using **MySQL / MariaDB**.
 

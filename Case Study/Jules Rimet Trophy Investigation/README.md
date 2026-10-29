@@ -63,6 +63,13 @@ It contains five main tables:
 | `08_self_practice_solutions.sql` | Solves the remaining PDF self-practice questions, conceptual database questions, witness leaderboard, chronological analysis, and case-map verification. |
 
 
+## Entity–Relationship Diagram (ERD)
+
+The ER diagram illustrates the database tables, primary keys, foreign keys, and relationships in the Jules Rimet Trophy Investigation project.
+
+![Jules Rimet Trophy Investigation ERD](Jules_Rimet_Trophy_Investigation_ERD.png)
+
+
 ## Investigation Questions Explored
 
 This project uses SQL to explore questions such as:

@@ -60,6 +60,7 @@ It contains five main tables:
 | `05_aggregate_queries.sql` | Uses COUNT, GROUP BY, HAVING, subqueries, and ranking to analyze records. |
 | `06_views.sql` | Creates reusable investigation views and timeline reports. |
 | `07_case_map.sql` | Creates a precomputed case map and demonstrates updating and refreshing investigation records. |
+| `08_self_practice_solutions.sql` | Solves the remaining PDF self-practice questions, conceptual database questions, witness leaderboard, chronological analysis, and case-map verification. |
 
 
 ## Investigation Questions Explored

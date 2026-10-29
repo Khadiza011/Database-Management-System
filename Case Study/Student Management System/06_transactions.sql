@@ -1,4 +1,3 @@
-
 -- =========================================================
 -- Project: Student Management System
 -- File: transactions.sql
@@ -89,32 +88,33 @@ FROM enrollments
 WHERE enrollment_id = 1;
 
 
+
 -- =========================================================
 -- Problem 97: Enroll a student safely
 -- Student 1004 enrolls in section 501.
---
--- Conditions:
--- 1. Section exists.
--- 2. Capacity is available.
--- 3. Student is not already enrolled.
---
--- The section row is locked before checking capacity.
--- All enrollment workflows must follow the same locking
--- protocol to coordinate concurrent enrollments.
 -- =========================================================
+
+USE student_management_db;
 
 START TRANSACTION;
 
--- Lock the target section until the transaction ends.
-SELECT
-    section_id,
-    capacity
-FROM course_sections
-WHERE section_id = 501
-FOR UPDATE;
+-- Initialize the capacity variable.
+SET @section_capacity = NULL;
 
--- Insert only if the section exists, capacity is available,
--- and this student has not already enrolled in the section.
+-- Lock the section row without returning a result set.
+UPDATE course_sections
+SET capacity = capacity
+WHERE section_id = 501;
+
+-- Retrieve capacity using a scalar subquery.
+SET @section_capacity = (
+    SELECT capacity
+    FROM course_sections
+    WHERE section_id = 501
+);
+
+-- Enroll only if the section exists, seats are available,
+-- and the student is not already enrolled.
 INSERT INTO enrollments (
     student_id,
     section_id,
@@ -130,11 +130,12 @@ SELECT
     NULL
 FROM course_sections AS cs
 WHERE cs.section_id = 501
+  AND @section_capacity IS NOT NULL
   AND (
       SELECT COUNT(*)
       FROM enrollments AS e
       WHERE e.section_id = cs.section_id
-  ) < cs.capacity
+  ) < @section_capacity
   AND NOT EXISTS (
       SELECT 1
       FROM enrollments AS existing
@@ -142,7 +143,9 @@ WHERE cs.section_id = 501
         AND existing.section_id = cs.section_id
   );
 
--- Verify the current section enrollment count.
+COMMIT;
+
+-- Verify section capacity.
 SELECT
     cs.section_id,
     cs.capacity,
@@ -152,10 +155,9 @@ FROM course_sections AS cs
 LEFT JOIN enrollments AS e
     ON cs.section_id = e.section_id
 WHERE cs.section_id = 501
-GROUP BY cs.section_id, cs.capacity;
-
--- Make the enrollment permanent.
-COMMIT;
+GROUP BY
+    cs.section_id,
+    cs.capacity;
 
 
 -- =========================================================

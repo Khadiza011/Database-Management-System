@@ -1,5 +1,4 @@
-
-# Student Management System 
+# Student Management System
 
 A real-world database case study designed to demonstrate SQL problem-solving, relational database design, data integrity, academic reporting, transaction management, and database security using **MySQL / MariaDB**.
 
@@ -14,7 +13,9 @@ This project simulates a university's student management system, covering studen
 - Generate academic reports using joins, aggregate functions, and views.
 - Improve query performance using indexes and execution plans.
 - Demonstrate transactions, triggers, stored procedures, and access control.
-- Explore advanced database concepts through practical SQL examples.
+- Apply normalization principles and analyze functional dependencies.
+- Explore hashing, table partitioning, and summary-table optimization.
+- Validate database consistency through practical testing.
 
 ## Technologies Used
 
@@ -28,7 +29,7 @@ This project simulates a university's student management system, covering studen
 
 | File | Description |
 |---|---|
-| `01_schema.sql` | Creates the database schema, tables, and relationships. |
+| `01_schema.sql` | Creates the database schema, tables, keys, and relationships. |
 | `02_sample_data.sql` | Inserts sample university records for testing and practice. |
 | `03_solutions.sql` | Solves foundational SQL problems using the project database. |
 | `04_views.sql` | Creates reusable views for student, enrollment, and academic reports. |
@@ -40,6 +41,9 @@ This project simulates a university's student management system, covering studen
 | `10_hashing.sql` | Demonstrates SQL hashing functions and hash-based comparisons. |
 | `11_partitioning.sql` | Explores table partitioning and partition-aware query plans. |
 | `12_testing.sql` | Provides validation queries for records, views, indexes, and database objects. |
+| `13_normalization.sql` | Demonstrates functional dependencies, 1NF, 2NF, 3NF, and practical table decomposition. |
+| `14_summary_tables.sql` | Implements summary tables and stored-procedure-based refreshes as a materialized-view alternative. |
+| `15_final_review.sql` | Provides final database structure, integrity, and consistency checks. |
 
 ## Entity–Relationship Diagram (ERD)
 
@@ -71,6 +75,8 @@ This project demonstrates how SQL can answer practical university management que
 - Generate student enrollment and academic summaries.
 - Detect duplicate enrollments and inconsistent records.
 - Audit changes to student results.
+- Analyze enrollment patterns and academic performance.
+- Validate database integrity and review query execution plans.
 
 ## How to Run the Project
 
@@ -79,11 +85,12 @@ This project demonstrates how SQL can answer practical university management que
 3. Execute `01_schema.sql` to create the database structure.
 4. Execute `02_sample_data.sql` to insert the sample records.
 5. Execute `03_solutions.sql` to explore the foundational SQL problems.
-6. Run the remaining files individually in numerical order.
-7. Review the query results and execution plans.
-8. Check the README and ERD for the overall database design.
+6. Run the remaining SQL files individually in numerical order.
+7. Review query results and execution plans.
+8. Verify the database objects and integrity checks using `12_testing.sql` and `15_final_review.sql`.
+9. Review the ERD and documentation to understand the overall database design.
 
-**Important:** Some files contain demonstration operations that modify data, create database objects, or require administrative privileges. Review the SQL statements before executing them. Use a development database for testing.
+**Important:** Some scripts create database objects, modify sample data, or require administrative privileges. Review the statements before execution and use a development database for testing. Follow any file-specific execution instructions.
 
 ## Compatibility Notes
 
@@ -92,7 +99,10 @@ This project demonstrates how SQL can answer practical university management que
 - Database account management requires appropriate privileges.
 - MySQL does not provide native materialized views in the same way as some other database systems; summary tables and refresh procedures can be used as alternatives.
 - Partitioning has engine-specific restrictions, including foreign-key limitations for partitioned InnoDB tables.
-- The grading scale used in the examples is illustrative and should be adapted to the university's official grading policy.
+- Hashing demonstrations are for learning purposes. Plain SHA-256 is not suitable for storing user passwords.
+- The grading scale used in examples is illustrative and should be adapted to the university's official grading policy.
+- The normalization script uses separate demonstration tables; it does not automatically normalize the original database schema.
+- Summary tables must be refreshed when their underlying data changes unless an automatic refresh mechanism is implemented.
 
 ## Learning Outcomes
 
@@ -101,13 +111,15 @@ By completing this case study, learners can practice:
 - Designing relational database schemas.
 - Writing SQL queries to solve practical problems.
 - Applying database constraints and normalization principles.
+- Understanding functional dependencies and relational decomposition.
 - Creating meaningful reports and analytical queries.
-- Understanding transactions and database concurrency.
+- Managing transactions and database concurrency.
 - Automating database tasks with triggers and stored procedures.
-- Managing database permissions and security.
-- Analyzing indexes, query plans, and partitioning.
+- Applying database permissions and security principles.
+- Analyzing indexes, query plans, hashing, and partitioning.
+- Building summary tables for reporting.
 - Testing data integrity and validating database behavior.
 
 ## Project Status
 
-An evolving SQL learning and database case study. Additional problems, testing scenarios, documentation, and optimizations can be added as the project develops.
+An evolving SQL learning and database case study. The project brings together foundational SQL, relational database design, advanced querying, performance optimization, security, and validation through practical university management scenarios.

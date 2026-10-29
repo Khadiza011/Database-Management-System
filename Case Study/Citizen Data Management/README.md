@@ -24,6 +24,10 @@ The project combines practical SQL implementation, partition analysis, query exe
 - **Documentation:** Markdown
 - **Source Material:** Lab 9 PDF — Table Partitioning and ACID Compliance
 
+## Entity–Relationship Diagram (ERD)
+
+![Citizen Data Management ERD](Citizen_Data_Management_ERD.png)
+
 ## SQL Files and Their Purposes
 
 | File | Description |

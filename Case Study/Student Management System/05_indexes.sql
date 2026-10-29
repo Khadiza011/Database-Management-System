@@ -173,15 +173,12 @@ WHERE semester_id = 403
   AND course_id = 302;
 
 
+
 -- =========================================================
--- Problem 93: Display table sizes and row estimates
+-- Problem 93: Display table status and storage information
+-- Alternative that does not query information_schema directly
 -- =========================================================
 
-SELECT
-    TABLE_NAME,
-    TABLE_ROWS,
-    DATA_LENGTH,
-    INDEX_LENGTH
-FROM information_schema.TABLES
-WHERE TABLE_SCHEMA = 'student_management_db'
-ORDER BY TABLE_NAME;
+USE student_management_db;
+
+SHOW TABLE STATUS;

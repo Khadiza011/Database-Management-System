@@ -4,6 +4,14 @@ A practical Database Management System (DBMS) case study using **MySQL / MariaDB
 
 The project combines practical SQL implementation, partition analysis, query execution plans, and transaction experiments to demonstrate how database systems organize data and maintain reliable financial records.
 
+## Reference Material
+
+The original PDF for this case study is available below.
+
+- 📄 [Citizen Data Management.pdf](Citizen%20Data%20Management.pdf)
+
+This document serves as the primary reference for the case study, including its requirements, practical exercises, and database experiments.
+
 ## Project Objectives
 
 - Implement table partitioning using `LIST`, `RANGE`, and `LIST COLUMNS`.

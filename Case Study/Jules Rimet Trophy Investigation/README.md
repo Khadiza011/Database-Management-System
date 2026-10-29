@@ -6,6 +6,14 @@ This case study demonstrates how relational database design and SQL queries can 
 
 The project follows the missions and exercises provided in the DBMS Lab Workshop .
 
+## Reference Material
+
+The original case study document is available below for reference.
+
+- 📄 [Jules Rimet Trophy Investigation.pdf](Jules%20Rimet%20Trophy%20Investigation.pdf)
+
+**Purpose:** This PDF serves as the primary reference material for the case study, including its requirements, problems, and practical exercises.
+
 ## Project Objectives
 
 - Design a relational database for an investigation scenario.

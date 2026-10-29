@@ -5,7 +5,7 @@ This repository contains my Database Management Systems (DBMS) coursework, SQL q
 ## Topics Covered
 
 - SQL Basics
-- DDL, DML and DCL
+- DDL, DML, DQL, DCL and TCL
 - Constraints
 - Joins and Subqueries
 - Aggregate Functions

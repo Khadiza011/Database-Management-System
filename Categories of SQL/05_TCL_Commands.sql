@@ -2,119 +2,70 @@
 -- =====================================================
 -- Topic: TCL Commands
 -- File: 05_TCL_Commands.sql
--- Database: banking_db
--- DBMS: MySQL / MariaDB
+-- Database: company_db
+-- DBMS: MariaDB / MySQL
 -- =====================================================
 
--- 1. Create a new database
-CREATE DATABASE IF NOT EXISTS banking_db;
+USE company_db;
 
--- 2. Select the database
-USE banking_db;
+-- 1. Display current employee records
+SELECT * FROM company_employees;
 
--- 3. Create an accounts table using InnoDB
-CREATE TABLE IF NOT EXISTS accounts (
-    account_id INT PRIMARY KEY,
-    account_holder VARCHAR(100) NOT NULL,
-    balance DECIMAL(12, 2) NOT NULL
-) ENGINE = InnoDB;
-
--- 4. Reset sample data for repeatable practice
-DELETE FROM accounts
-WHERE account_id IN (1001, 1002, 1003);
-
--- 5. Insert sample bank accounts
-INSERT INTO accounts (account_id, account_holder, balance)
-VALUES
-    (1001, 'Rahim Ahmed', 10000.00),
-    (1002, 'Karim Hasan', 8000.00),
-    (1003, 'Nusrat Jahan', 5000.00);
-
--- 6. Display the initial balances
-SELECT * FROM accounts;
-
--- =====================================================
--- Example 1: COMMIT
--- Permanently saves the current transaction
--- =====================================================
-
+-- 2. Start a transaction
 START TRANSACTION;
 
-UPDATE accounts
-SET balance = balance + 1000.00
-WHERE account_id = 1001;
+-- 3. Update an employee's salary
+UPDATE company_employees
+SET salary = salary + 1000
+WHERE employee_id = 101;
 
+-- 4. Save the transaction
 COMMIT;
 
--- Verify the committed change
-SELECT * FROM accounts
-WHERE account_id = 1001;
+-- 5. Verify the committed salary
+SELECT employee_id, employee_name, salary
+FROM company_employees
+WHERE employee_id = 101;
 
--- =====================================================
--- Example 2: ROLLBACK
--- Undoes uncommitted changes
--- =====================================================
-
+-- 6. Start another transaction
 START TRANSACTION;
 
-UPDATE accounts
-SET balance = balance - 2000.00
-WHERE account_id = 1002;
+-- 7. Update an employee's salary
+UPDATE company_employees
+SET salary = salary + 5000
+WHERE employee_id = 102;
 
--- Undo the update
+-- 8. Undo the uncommitted update
 ROLLBACK;
 
--- The balance remains unchanged
-SELECT * FROM accounts
-WHERE account_id = 1002;
+-- 9. Verify that the salary was restored
+SELECT employee_id, employee_name, salary
+FROM company_employees
+WHERE employee_id = 102;
 
--- =====================================================
--- Example 3: SAVEPOINT
--- Marks a point inside a transaction
--- =====================================================
-
+-- 10. Demonstrate SAVEPOINT
 START TRANSACTION;
 
-UPDATE accounts
-SET balance = balance - 1000.00
-WHERE account_id = 1001;
+-- First change
+UPDATE company_employees
+SET salary = salary + 1000
+WHERE employee_id = 103;
 
-SAVEPOINT after_withdrawal;
+-- Mark a savepoint
+SAVEPOINT salary_update_point;
 
-UPDATE accounts
-SET balance = balance + 1000.00
-WHERE account_id = 1002;
+-- Second change
+UPDATE company_employees
+SET salary = salary + 2000
+WHERE employee_id = 104;
 
--- Undo only the second update
-ROLLBACK TO SAVEPOINT after_withdrawal;
+-- Undo changes made after the savepoint
+ROLLBACK TO SAVEPOINT salary_update_point;
 
--- Save the remaining transaction
+-- Commit the remaining transaction
 COMMIT;
 
--- Verify both accounts
-SELECT * FROM accounts
-WHERE account_id IN (1001, 1002)
-ORDER BY account_id;
-
--- =====================================================
--- Example 4: Full transaction rollback
--- =====================================================
-
-START TRANSACTION;
-
-DELETE FROM accounts
-WHERE account_id = 1003;
-
--- Undo the deletion
-ROLLBACK;
-
--- Account 1003 should still exist
-SELECT * FROM accounts
-WHERE account_id = 1003;
-
--- =====================================================
--- Final account balances
--- =====================================================
-
-SELECT * FROM accounts
-ORDER BY account_id;
+-- 11. Display final employee salaries
+SELECT employee_id, employee_name, salary
+FROM company_employees
+ORDER BY employee_id;

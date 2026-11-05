@@ -22,7 +22,7 @@ This section covers database normalization techniques using **MySQL** to reduce 
 - Command Line
 - Git & GitHub
 
-## 🗃️ Database Used
+## Database Used
 
 `normalization_db`
 

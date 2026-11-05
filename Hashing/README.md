@@ -1,4 +1,4 @@
-# #️Database Hashing
+# Database Hashing
 
 This section covers database hashing techniques using **MySQL** to understand efficient data retrieval through hash-based indexing.
 
